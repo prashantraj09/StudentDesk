@@ -1,25 +1,25 @@
-# import mysql.connector
+import mysql.connector
 
 # ---------- DATABASE CONNECTION ----------
-# db = mysql.connector.connect(
-#     host="localhost",
-#     user="root",
-#     password="YOUR_PASSWORD",
-#     database="studentdb"
-# )
+db = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="YOUR_PASSWORD",
+    database="studentdb"
+)
 
-# cursor = db.cursor()
+cursor = db.cursor()
 
 # ---------- CREATE TABLE IF NOT EXISTS ----------
-# cursor.execute("""
-# CREATE TABLE IF NOT EXISTS students(
-#     id INT AUTO_INCREMENT PRIMARY KEY,
-#     name VARCHAR(255),
-#     age INT,
-#     course VARCHAR(255),
-#     city VARCHAR(255)
-# )
-# """)
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS students(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    age INT,
+    course VARCHAR(255),
+    city VARCHAR(255)
+)
+""")
 
 # ---------- INSERT ----------
 def add_student():
@@ -33,14 +33,14 @@ def add_student():
     cursor.execute(query, values)
     db.commit()
 
-    print("\nStudent Added Successfully\n")
+    print("Student Added Successfully")
 
 # ---------- VIEW ----------
 def view_students():
     cursor.execute("SELECT * FROM students")
     result = cursor.fetchall()
 
-    print("\n--- All Students ---")
+    print("--- All Students ---")
     for row in result:
         print(row)
     print()
@@ -61,7 +61,7 @@ def update_student():
     cursor.execute(query, values)
     db.commit()
 
-    print("\nStudent Updated Successfully\n")
+    print("Student Updated Successfully")
 
 # ---------- DELETE ----------
 def delete_student():
@@ -72,7 +72,7 @@ def delete_student():
     cursor.execute(query, (sid,))
     db.commit()
 
-    print("\nStudent Deleted Successfully\n")
+    print("Student Deleted Successfully")
 
 # ---------- SEARCH ----------
 def search_student():
@@ -83,11 +83,11 @@ def search_student():
     result = cursor.fetchall()
 
     if result:
-        print("\n--- Search Result ---")
+        print("--- Search Result ---")
         for row in result:
             print(row)
     else:
-        print("\nNo Student Found\n")
+        print("No Student Found")
 
 
 # ---------- MENU ----------
